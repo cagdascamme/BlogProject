@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogProject.Models
@@ -19,6 +20,7 @@ namespace BlogProject.Models
         [MaxLength(100, ErrorMessage = "The name cannot exceed 100 characters")]
         public string Author { get; set; }
 
+        [ValidateNever]
         public string FeatureImagePath { get; set; }
 
         [DataType(DataType.Date)]
@@ -26,7 +28,8 @@ namespace BlogProject.Models
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
+
+        [ValidateNever]
         public Category Category { get; set; }
-        public ICollection<Comment> Comments { get; set; }
     }
 }
